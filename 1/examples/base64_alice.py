@@ -14,7 +14,8 @@ def run(addr, port):
 
     smsg = {} 
     smsg["name"] = "Alice"
-    smsg["random"] = random.randbytes(4)
+    rand = random.randbytes(32)
+    smsg["random"] = base64.b64encode(rand).decode("ascii")
     logging.debug("smsg: {}".format(smsg))
 
     sjs = json.dumps(smsg)
@@ -38,6 +39,8 @@ def run(addr, port):
     logging.info("[*] Received: {}".format(rjs))
     logging.info(" - name: {}".format(rmsg["name"]))
     logging.info(" - random: {}".format(rmsg["random"]))
+    rand = base64.b64decode(rmsg["random"])
+    logging.info(" - random (base64-decoded): {}".format(rand))
 
     conn.close()
 
