@@ -22,7 +22,7 @@ def run(addr, port):
     smsg = {} 
     smsg["name"] = "Alice"
     key = random.randbytes(32)
-    smsg["random"] = base64.b64encode(rand)
+    smsg["random"] = base64.b64encode(key).decode()
     logging.debug("smsg: {}".format(smsg))
 
     sjs = json.dumps(smsg)
