@@ -55,6 +55,7 @@ def run(addr, port):
 
         conn_handle = threading.Thread(target=handler, args=(conn,))
         conn_handle.start()
+        conn_handle.join()
 
 def command_line_args():
     parser = argparse.ArgumentParser()
